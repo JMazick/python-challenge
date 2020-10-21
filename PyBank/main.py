@@ -12,7 +12,9 @@ with open(PyBank) as csv_file:
     csv_header = next(csv_file)
     print(f"Header: {csv_header}")
     
-    #for row in csv_reader: *********need help on this
-        #Date = row[0]
-        #ProfitLosses = row[1]
+    for row in csv_reader:
+        Date = row[0]
+        ProfitLosses = row[1]
         
+
+#pybank into a dictionary???
