@@ -52,7 +52,7 @@ TotalProfits = sum(ProfitLosses)
 
 # print analysis to look pretty
 print("Financial Analysis")
-print("--------------------------------------")
+print("--------------------------------------------------")
 print(f"Total Months:    {TotalMonths}")
 print(f"Total:          ${TotalProfits}")
 print(f"Average Change: ${Average}")
