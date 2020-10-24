@@ -7,9 +7,12 @@ os.chdir("C:\\Users\\jazly\\OneDrive\\BOOTCAMP\\HOMEWORK\\WEEK-3")
 # Define the function and have it accept the 'PyBank' as its sole parameter
 PyBank = "00_Homework Assignments Instructions & Data_Week3_Instructions_PyBank_Resources_budget_data.csv"
 
+# Define lists
 Date = []
 ProfitLosses = []
-ProfitChange= []
+ProfitChange = []
+bank = [Date],[ProfitChange]
+
 
 with open(PyBank) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
@@ -20,27 +23,41 @@ with open(PyBank) as csv_file:
         Date.append(row[0])
         ProfitLosses.append(int(row[1]))
         
+# create loop to have net change calculated between each row
     for x in range(len(ProfitLosses) - 1):
         ProfitChange.append(ProfitLosses[x + 1] - ProfitLosses[x])
+
+
+# get max value
+GreatestIncrease = max(ProfitChange)
+
+# get min value
+GreatestDecrease = min(ProfitChange)
+
+Average = round((sum(ProfitChange) / (len(ProfitChange))), 2)
         
-        
-        
-print(Date)
+# get max and min date value
+# grab index of min and max value + 1 and print corresponding value in Date list
+inc_date = ProfitChange.index(GreatestIncrease)+1
+MaxDate = (Date[inc_date])
 
-print(len(Date))
+dec_date = ProfitChange.index(GreatestDecrease)+1
+MinDate = (Date[dec_date])
 
-print(ProfitLosses)
 
-print(sum(ProfitLosses))
-
+# define values as integers
 TotalMonths = len(Date)
 TotalProfits = sum(ProfitLosses)
 
-print(TotalMonths)
-print(TotalProfits)
+
+# print analysis to look pretty
+print("Financial Analysis")
+print("--------------------------------------")
+print(f"Total Months:    {TotalMonths}")
+print(f"Total:          ${TotalProfits}")
+print(f"Average Change: ${Average}")
+print(f"Greatest increase in Profits: {MaxDate} (${GreatestIncrease})")
+print(f"Greatest decrease in Profits: {MinDate} (${GreatestDecrease})")
 
 
-
-AverageChange = (sum(ProfitChange) / (len(ProfitChange)))
-print(AverageChange)
 
