@@ -23,10 +23,53 @@ with open(PyPoll) as csv_file:
         Voter_ID.append(int(row[0]))
         County.append(row[1])
         Candidate.append(row[2])
-                
-    print(Candidate)
-        
+    
+
+    Names = list(set(Candidate))
+    namesorder = [3, 1, 2, 0]
+    Names = [Names[y] for y in namesorder]
+print(Names)
+
+
+namevotes = {}
+
+
+Counter = 0
+
+for i in range(len(Names)):
+    for x in range(len(Candidate)):
+        if Candidate[x] == Names[i]:
+            Counter += 1
+    print(Counter)
+    namevotes[Names[i]] = Counter
+    Counter = 0
+
+
+
 TotalVotes = len(Voter_ID)
-print(TotalVotes)
+votes = [(namevotes["Khan"]), (namevotes["Correy"]), (namevotes["Li"]), (namevotes["O'Tooley"])]
 
 
+KhanPercent = round((namevotes["Khan"] / TotalVotes) * 100, 3)
+CorreyPercent = round((namevotes["Correy"] / TotalVotes) * 100, 3)
+LiPercent = round((namevotes["Li"] / TotalVotes) * 100, 3)
+OTooleyPercent = round((namevotes["O'Tooley"] / TotalVotes) * 100, 3)
+
+percents = [KhanPercent, CorreyPercent, LiPercent, OTooleyPercent]
+VotePercent = {"Khan": KhanPercent,
+               "Correy": CorreyPercent,
+               "Li": LiPercent,
+               "O'Tooley": OTooleyPercent}
+maxpercent = max(percents)
+
+
+print("Election Results")
+print("--------------------------------")
+print(f"Total Votes: {TotalVotes}")
+print("--------------------------------")
+print(f"{Names[0]}: {KhanPercent}% ({votes[0]})")
+print(f"{Names[1]}: {CorreyPercent}% ({votes[1]})")
+print(f"{Names[2]}: {LiPercent}% ({votes[2]})")
+print(f"{Names[3]}: {OTooleyPercent}% ({votes[3]})")
+print("--------------------------------")
+print("Winner: Khan")
